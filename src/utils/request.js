@@ -4,6 +4,8 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 // 引入store对象 -- 与组件中导入不同
 import store from '@/store/index.js'
+// 引入token时间是否超时
+import { isCheckTimeOut } from './auth.js'
 // 封装token
 const server = axios.create({
   // 后台代理 cros
@@ -11,10 +13,16 @@ const server = axios.create({
   baseURL: '/api' // vue.config.js 已配置代理
 })
 
-// 响应拦截 封装token
+// 请求拦截 封装token
 server.interceptors.request.use(
   (config) => {
     if (store.getters.token) {
+      if (!isCheckTimeOut()) {
+        // 过期 执行退出
+        store.dispatch('user/logout')
+        // 不能请求了
+        return Promise.reject(new Error('token过期，请重新登录'))
+      }
       //   // 如果存在token 不存在 不封装
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
@@ -43,10 +51,17 @@ server.interceptors.response.use(
     }
   },
   (error) => {
+    // 后端token失效 code=401 单点登录 后台会返回特定的状态码 -- 执行退出
+    const { message, response } = error // 解构 error 对象
+    if (response && response.data && response.data.code === 401) {
+      // 过期 执行退出
+      store.dispatch('user/logout')
+    }
+
     // 浏览器没有返回数据或服务器未知错误
     ElMessage({
       type: 'error',
-      message: '响应拦截'
+      message
     })
     // 对响应错误做点什么
     return Promise.reject(error)
