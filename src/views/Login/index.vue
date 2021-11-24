@@ -56,7 +56,7 @@
         </div>
         <!-- 记住下次登陆 -->
         <p>
-          <el-checkbox v-model="checked1" label="记住下次登陆"></el-checkbox>
+          <el-checkbox label="记住下次登陆"></el-checkbox>
         </p>
       </el-form>
     </div>

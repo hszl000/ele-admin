@@ -1,5 +1,8 @@
 <template>
-  <div class="app-main">appmin</div>
+  <div class="app-main">
+    <!-- 二级路由显示容器 -->
+    <router-view />
+  </div>
 </template>
 
 <script setup></script>

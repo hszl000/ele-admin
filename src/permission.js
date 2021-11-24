@@ -18,6 +18,7 @@ router.beforeEach(async (to, form, next) => {
     } else {
       // 登陆成功 跳转到首页
       if (!store.getters.hasUserInfo) {
+        // 判断是否由用户数据
         // 判断没有用户的信息 就去发送axios
         // setTimeout(async () => {
         //   await store.dispatch('user/getUserInfo')

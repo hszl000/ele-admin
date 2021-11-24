@@ -26,7 +26,7 @@ const mutations = {
     // 保存本地储存中
     utils.setItem(TOKEN, token)
   },
-  //
+  // 设置用户数据
   setUserInfo(state, userInfo) {
     // 保存 vuex or 本地储存
     state.userInfo = userInfo
@@ -38,17 +38,20 @@ const actions = {
   // 登录
   login({ commit }, info) {
     // 获取到登陆的密码信息
-    const { username, password } = info
+    const { username, password } = info // 解构登陆参数
     return new Promise((resolve, reject) => {
-      login({ username, password: md5(password) })
+      // 返回promise
+      login({ username, password: md5(password) }) // 发送请求（封装好的user模块请求），把数据用md5加密
         .then((res) => {
+          // 成功执行
           // 保存 vuex 和 本地存储
           commit('setToken', res.token)
           // 设置token的获取时间
-          setTimeStamp()
+          setTimeStamp() // 设置登录时token时间
           resolve()
         })
         .catch((err) => {
+          // 失败执行
           reject(err)
         })
     })

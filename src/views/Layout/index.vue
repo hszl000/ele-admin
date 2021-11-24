@@ -1,7 +1,11 @@
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="store.getters.sideBarOpen ? '' : 'hideSidebar'"
+  >
     <!-- 左边 -->
     <side-bar
+      id="guide-sidebar"
       class="siderbar-container"
       :style="{ backgroundColor: variables.menuBg }"
     />
@@ -20,8 +24,9 @@ import NavBar from './components/Navbar/index.vue'
 import AppMain from './components/Appmain/index.vue'
 
 // 引入scss变量样式 在js中使用
-
 import variables from '@/styles/variables.scss'
+import { useStore } from 'vuex'
+const store = useStore()
 </script>
 <style lang="scss" scoped>
 @import '~@/styles/common.scss';
@@ -31,13 +36,13 @@ import variables from '@/styles/variables.scss'
   position: relative;
   height: 100%;
   width: 100%;
-  // display: flex;
   .siderbar-container {
     width: $sideBarWidth;
     height: 100vh;
     float: left;
+    overflow: hidden; // 侧边栏超出出现了滚动条
+    transition: width 0.28s;
   }
-
   .main-container {
     .fixed-header {
       position: fixed;
@@ -45,7 +50,16 @@ import variables from '@/styles/variables.scss'
       right: 0;
       z-index: 10;
       width: calc(100% - #{$sideBarWidth}); // 用来动态计算宽度的
+      transition: width 0.28s;
     }
+  }
+}
+.hideSidebar {
+  .siderbar-container {
+    width: #{$sideBarhideWidth};
+  }
+  .fixed-header {
+    width: calc(100% - #{$sideBarhideWidth}) !important; // 用来动态计算宽度的
   }
 }
 </style>

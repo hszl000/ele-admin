@@ -19,17 +19,20 @@ const iconName = computed(() => {
 })
 const svgClass = computed(() => {
   if (props.iconClass) {
+    // 如果传了iconClass 就加上
     return 'defaultSvgClass ' + props.iconClass
   } else {
+    // 否则就显示默认的
     return 'defaultSvgClass'
   }
 })
 </script>
 <style lang="scss" scoped>
 .defaultSvgClass {
-  width: 1.5em;
-  height: 1.5em;
-  vertical-align: -0.15rm;
+  width: 1.2rem;
+  height: 1.2rem;
+  // vertical-align: -0.15em;
+  fill: currentColor;
   overflow: hidden;
 }
 </style>

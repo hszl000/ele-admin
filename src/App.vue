@@ -4,4 +4,8 @@
 
 <script setup></script>
 
-<style></style>
+<style lang="scss" scoped>
+#app .hideSidebar .el-submenu > .el-submenu__title {
+  padding: 20px !important;
+}
+</style>

@@ -9,7 +9,7 @@ import { isCheckTimeOut } from './auth.js'
 // 封装token
 const server = axios.create({
   // 后台代理 cros
-  timeout: 5000,
+  timeout: 5000, // 请求延时时间（超过时间就报错）
   baseURL: '/api' // vue.config.js 已配置代理
 })
 
