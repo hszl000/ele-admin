@@ -3,12 +3,13 @@
   <i :class="icon" v-if="icon.includes('el-icon')"></i>
   <!-- 展示自定义图标 -->
   <svg-icon :iconName="icon" iconClass="icons" v-else />
-  <span v-if="children">{{ title }}</span>
+  <span v-if="children">{{ getTitle(title) }}</span>
 </template>
 
 <script setup>
 import { defineProps } from 'vue'
-
+// 引入 i18n 封装title
+import { getTitle } from '@/utils/i18n.js'
 defineProps({
   title: {
     type: String,

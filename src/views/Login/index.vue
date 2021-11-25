@@ -8,7 +8,9 @@
         ref="loginRef"
       >
         <div class="title-container">
-          <h3 class="title">用户登录</h3>
+          <h3 class="title">{{ $t('msg.login.title') }}</h3>
+          <!-- 国际化语言切换 -->
+          <select-lang class="select-lang" />
         </div>
         <!-- 用户名 -->
         <el-form-item prop="username">
@@ -16,7 +18,7 @@
             <svg-icon iconName="user" iconClass="user" />
           </span>
           <el-input
-            placeholder="请输入账户"
+            :placeholder="$t('msg.login.username')"
             name="username"
             type="text"
             v-model="loginForm.username"
@@ -28,7 +30,7 @@
             <svg-icon iconName="pass" iconClass="user" />
           </span>
           <el-input
-            placeholder="请输入密码"
+            :placeholder="$t('msg.login.password')"
             name="password"
             v-model="loginForm.password"
             :type="passShow ? 'password' : 'text'"
@@ -40,24 +42,28 @@
         </el-form-item>
         <!-- 服务条款 -->
         <div>
-          <span style="color: gray">登录表示您已同意</span>
-          <el-link type="primary">《服务条款》</el-link>
+          <span style="color: gray">{{ $t('msg.login.rulesTitle') }}</span>
+          <el-link type="primary">{{ $t('msg.login.rules') }}</el-link>
         </div>
         <!-- 按钮 -->
         <div class="button" style="margin-top: 30px; margin-bottom: 20px">
           <!-- 登录按钮 -->
-          <el-button type="primary" style="width: 100%" @click="loginFn"
-            >登录</el-button
-          >
+          <el-button type="primary" style="width: 100%" @click="loginFn">{{
+            $t('msg.login.loginBtn')
+          }}</el-button>
           <!-- 重置按钮 -->
-          <el-button type="reset" style="width: 100%" @click="resetForm"
-            >重置</el-button
-          >
+          <el-button type="reset" style="width: 100%" @click="resetForm">{{
+            $t('msg.login.resetBtn')
+          }}</el-button>
         </div>
         <!-- 记住下次登陆 -->
         <p>
-          <el-checkbox label="记住下次登陆"></el-checkbox>
+          <el-checkbox :label="$t('msg.login.save')"></el-checkbox>
         </p>
+        <!-- 账号 tips -->
+        <el-scrollbar class="tips">
+          <div v-html="$t('msg.login.desc')"></div>
+        </el-scrollbar>
       </el-form>
     </div>
   </div>
@@ -65,14 +71,15 @@
 
 <script setup>
 // 引入vue内置函数
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 // 引入密码验证规则函数
-import { passswordValidate } from './rules.js'
+import { passswordValidate, usernameValidate } from './rules.js'
 // 引入store对象(vuex)
 import { useStore } from 'vuex'
 // 获取路由
 import { useRouter } from 'vue-router'
-
+// 引入中英文切换组件
+import SelectLang from '@/components/SelectLang/index.vue'
 // 收集表单数据
 const loginForm = ref({
   username: 'super-admin',
@@ -90,7 +97,8 @@ const loginFormRules = {
     {
       required: true,
       trigger: 'blur',
-      message: '请输入用户名'
+      // message: i18n.t('msg.login.usernameRule') // 没有响应式
+      validator: usernameValidate()
     }
   ],
   password: [
@@ -130,6 +138,15 @@ const resetForm = () => {
     dataObj[i] = ''
   }
 }
+// 检测语言变化重新校验表单规则
+watch(
+  () => store.getters.language,
+  () => {
+    // 中英文切换了 重新验证规则
+    loginRef.value.validateField('username') // 检验单个
+    loginRef.value.validateField('password') // 检验单个
+  }
+)
 </script>
 
 <style lang="scss" scoped>
@@ -167,7 +184,7 @@ $cursor: #fff;
     max-width: 100%;
     padding: 20px;
     margin: 0 auto;
-    overflow: hidden;
+    // overflow: hidden;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     :deep(.el-form-item) {
@@ -206,12 +223,26 @@ $cursor: #fff;
       }
     }
     .title-container {
+      position: relative;
       .title {
         text-align: center;
         margin-bottom: 30px;
         font-size: 26px;
         color: $ligit_gray;
         font-weight: bold;
+      }
+      :deep(.select-lang) {
+        position: absolute;
+        top: -6px;
+        right: 0px;
+        border-radius: 4px;
+        transition: background 0.28s;
+        .is-pure {
+          opacity: 0.5;
+        }
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
       }
     }
     :deep(.el-checkbox__inner) {
@@ -220,6 +251,26 @@ $cursor: #fff;
     .button {
       display: flex;
       opacity: 0.8;
+    }
+    .tips {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      margin-left: 30px;
+      width: 260px;
+      max-width: 100%;
+      height: 26px;
+      overflow-y: hidden;
+      background: rgba(250, 243, 243, 0.5);
+      border-radius: 10px;
+      line-height: 30px;
+      padding: 20px;
+      transition: height 0.28s;
+      font-size: 12px;
+      &:hover {
+        height: calc(100% - 40px);
+        overflow-y: auto;
+      }
     }
   }
 }

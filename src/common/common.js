@@ -6,3 +6,5 @@ export const USER_INFO = 'user_info'
 export const TIME_STAMP = 'time_stamp'
 // 2小时（计算毫秒）
 export const TIME_OUT = 60 * 1000
+// 设置国际化变量
+export const LANGUAGE = 'language'

@@ -8,9 +8,11 @@
       >
         <!-- 判断最后一项不能点 -->
         <span v-if="index === breadcrumbData.length - 1">{{
-          route.meta.title
+          getTitle(route.meta.title)
         }}</span>
-        <a v-else @click="onLinkClick(route.path)">{{ route.meta.title }}</a>
+        <a v-else @click="onLinkClick(route.path)">{{
+          getTitle(route.meta.title)
+        }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -20,6 +22,8 @@
 // 监听路由变化
 import { useRoute, useRouter } from 'vue-router'
 import { watch, ref } from 'vue'
+// 引入 i18n 封装title
+import { getTitle } from '@/utils/i18n.js'
 // 获取当前的路由
 const route = useRoute()
 const router = useRouter()

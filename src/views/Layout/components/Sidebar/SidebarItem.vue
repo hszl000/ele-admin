@@ -24,14 +24,15 @@
       :children="false"
     />
     <!-- 由于单个导航必须要有插槽，就将插槽写在这里 -->
-    <template #title>{{ route.meta.title }}</template>
+    <template #title>{{ getTitle(route.meta.title) }}</template>
   </el-menu-item>
 </template>
 
 <script setup>
 import { defineProps } from 'vue'
 import MenuItem from './MenuItem.vue'
-
+// 引入 i18n 封装title
+import { getTitle } from '@/utils/i18n.js'
 defineProps({
   route: {
     type: Object,

@@ -6,6 +6,8 @@
     <breadcrumb class="breadcrumb-container" />
     <!-- 右侧 -->
     <div class="right-menu">
+      <!-- 国际化按钮 -->
+      <select-lang class="rigth-menu-item" />
       <el-dropdown class="avatar-containe">
         <!-- 头像 -->
         <div class="avatar-wrapper">
@@ -13,11 +15,13 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-drop-down">
-            <el-dropdown-item>首页</el-dropdown-item>
-            <el-dropdown-item disabled>课程主页</el-dropdown-item>
-            <el-dropdown-item divided @click="logout"
-              >退出登录</el-dropdown-item
-            >
+            <el-dropdown-item @click="routerHome">{{
+              $t('msg.navBar.home')
+            }}</el-dropdown-item>
+            <el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item>
+            <el-dropdown-item divided @click="logout">{{
+              $t('msg.navBar.logout')
+            }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -29,9 +33,13 @@
 // import avatar from '@/assets/logo.png'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import Cuttle from '@/components/Cuttle/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+// 引入封装好的 国际化组件
+import SelectLang from '@/components/SelectLang/index.vue'
 const store = useStore()
+const router = useRouter()
 // 主动退出
 const logout = () => {
   store.dispatch('user/logout')
@@ -40,6 +48,10 @@ const logout = () => {
 const avatar = computed(() => {
   return store.state.user.userInfo.avatar
 })
+// 跳转首页
+const routerHome = () => {
+  router.push('/')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -63,6 +75,14 @@ const avatar = computed(() => {
           --el-avatar-background-color: none;
           margin-right: 10px;
         }
+      }
+    }
+    :deep(.rigth-menu-item) {
+      transition: background 0.28s;
+      font-size: 24px;
+      vertical-align: text-bottom;
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
       }
     }
   }

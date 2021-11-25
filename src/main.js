@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import i18n from '@/i18n/index.js' // i18n 执行时机比较早 放在App前面
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -12,10 +13,13 @@ import initSvgIcon from '@/icons/index.js'
 
 // 用户鉴权 (路由守卫)
 import './permission.js'
+
+// 导入 i18n 国际化
+
 const app = createApp(App)
 installElementPlus(app) // 安装使用element函数
 initSvgIcon(app) // svg 函数
-app.use(store).use(router).mount('#app')
+app.use(store).use(router).use(i18n).mount('#app')
 
 // 入口 main.jx --> webpack（导入模块：js模块）   出口 /js/app.js 文件
 
@@ -136,4 +140,15 @@ app.use(store).use(router).mount('#app')
                   2.不存在children 以el-menu-item来显示 一级菜单
               2.如果不满足meta && meta.icon && meta.title 不应该出现
       3.根据获取的路由对象，遍历输出对应的菜单
+*/
+
+/*
+  中英文切换（国际化）
+    1.需要一个变量 locale 控制语言和环境
+    2.所有的语言中的源数据都要事先准备好
+    3.定义一个方法获取对应语言包中的数据
+
+    借助 i18n 插件完成 国际化
+    1.下载 i18n (由于本项目是3.2版本 所以必须安装 i18n 9以上的版本)
+    npm install vue-i18n@next （大于9的版本 "^9.2.0-beta.21"）
 */
