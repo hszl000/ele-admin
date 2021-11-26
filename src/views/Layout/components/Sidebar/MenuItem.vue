@@ -30,6 +30,7 @@ defineProps({
 .icons {
   margin-right: 10px;
   margin-left: -3px;
+  vertical-align: middle;
 }
 // .el-icon {
 //   width: 1rem;

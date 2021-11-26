@@ -6,6 +6,8 @@
     <breadcrumb class="breadcrumb-container" />
     <!-- 右侧 -->
     <div class="right-menu">
+      <!-- 主题换肤组件 -->
+      <theme class="rigth-menu-item" />
       <!-- 国际化按钮 -->
       <select-lang class="rigth-menu-item" />
       <el-dropdown class="avatar-containe">
@@ -38,6 +40,8 @@ import Cuttle from '@/components/Cuttle/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 // 引入封装好的 国际化组件
 import SelectLang from '@/components/SelectLang/index.vue'
+// 引入主题换肤
+import Theme from '@/components/Theme/index.vue'
 const store = useStore()
 const router = useRouter()
 // 主动退出

@@ -47,4 +47,8 @@ const activePath = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.el-sub-menu__title) {
+  display: block !important;
+}
+</style>
