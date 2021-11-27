@@ -19,8 +19,6 @@ import SidebarMenu from './SidebarMenu.vue'
 import Logo from '@/assets/logo.png'
 import { useStore } from 'vuex'
 const store = useStore()
-const bgColor = store.getters.cssVar.menuBg
-console.log(bgColor)
 </script>
 
 <style lang="scss" scoped>

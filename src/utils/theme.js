@@ -29,16 +29,21 @@ export const generateNewStyle = async (primary) => {
 
 // 获取本地的 element 版本
 const getDriginalStyle = async () => {
+  // 获取到element当前的版本
   const version = require('element-plus/package.json').version
+  // 组装成请求本版本的在线路径
   const url = `https://unpkg.com/element-plus@${version}/dist/index.css`
+  // 发送请求，得到请求的元样式
   const { data } = await axios(url)
   return data
 }
 // 将原文件做标记
 const getStyleTemplate = (Style) => {
+  // 得到common.js中子集匹配好的 样式标记对象
   Object.keys(colorMap).forEach((key) => {
+    // 拿到  '#3a8ee6': 'shade-1', 标记
     const value = colorMap[key] // 这里拿到value  '#3a8ee6': 'shade-1',
-    // 正则把原样式包里的样式替换 标记
+    // 正则把原样式包里的样式替换 成 标记
     Style = Style.replace(new RegExp(key, 'gi'), value)
   })
   return Style
@@ -50,10 +55,10 @@ export const generateColors = (primary) => {
     primary
   }
   Object.keys(colorTables).forEach((key) => {
-    // 将主色应用到 color 函数中
+    // 将主色应用到 color 函数中  //  'shade-1': 'color(primary shade(10%))',
     // color(primary shade(10%)) 将替换成 color(#012829 shade(10%))
     const value = colorTables[key].replace(new RegExp(/primary/g), primary)
-    // 生成 16 进制的颜色()()() 1a3d3e
+    // 生成 16 进制的颜色()()() # + 1a3d3e // 这里借助两个插件
     colors[key] = '#' + rgbHex(color.convert(value))
   })
   // console.log(colors, '000000---') // 生成后的对象格式
@@ -63,7 +68,10 @@ export const generateColors = (primary) => {
  * 将生成的样式写入到 header 标签中
  */
 export const writeStyleToHeaderTag = (newStyle) => {
+  // 生成 style标签
   const style = document.createElement('style')
+  // 将新生成的样式放进 style 标签中
   style.innerHTML = newStyle
+  // 将标签放到 head 让其生效
   document.head.appendChild(style)
 }

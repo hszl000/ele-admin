@@ -9,7 +9,7 @@ import { useStore } from 'vuex'
 // 由于版本问题不能直接
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import en from 'element-plus/lib/locale/lang/en'
-// 生成情景样式  替换样式
+// 生成情景样式  替换样式 （由于是网络请求的样式 element 没有存在vuex中， 刷新会丢失，所以当页面重新加载的时候都会根据主色重新 请求 生成 并运用情景色）
 import { generateNewStyle, writeStyleToHeaderTag } from '@/utils/theme.js'
 const store = useStore()
 // 生成的情景色 (由于他返回的是promise所以要 。then)

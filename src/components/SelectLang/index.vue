@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" @command="selectLang">
     <!-- 图标 -->
-    <svg-icon iconName="language" iconClass="select-lang" />
+    <svg-icon iconName="language" />
     <!-- 下拉选项 -->
     <template #dropdown>
       <el-dropdown-menu>
@@ -39,8 +39,4 @@ const selectLang = (lang) => {
 }
 </script>
 
-<style lang="scss" scoped>
-.select-lang {
-  padding: 15px;
-}
-</style>
+<style lang="scss" scoped></style>

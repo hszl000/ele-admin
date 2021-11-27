@@ -6,6 +6,10 @@
     <breadcrumb class="breadcrumb-container" />
     <!-- 右侧 -->
     <div class="right-menu">
+      <!-- 模糊搜索组件 -->
+      <search class="rigth-menu-item search_" />
+      <!-- 全屏切换组件 -->
+      <screen-full class="rigth-menu-item" />
       <!-- 主题换肤组件 -->
       <theme class="rigth-menu-item" />
       <!-- 国际化按钮 -->
@@ -42,6 +46,10 @@ import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import SelectLang from '@/components/SelectLang/index.vue'
 // 引入主题换肤
 import Theme from '@/components/Theme/index.vue'
+// 全屏切换组件
+import ScreenFull from '@/components/ScreenFull/index.vue'
+// 模糊搜索组件
+import Search from '@/components/Search/index.vue'
 const store = useStore()
 const router = useRouter()
 // 主动退出
@@ -85,9 +93,16 @@ const routerHome = () => {
       transition: background 0.28s;
       font-size: 24px;
       vertical-align: text-bottom;
+      padding: 15px;
+      color: #606266; // 设置图标颜色
       &:hover {
         background: rgba(0, 0, 0, 0.1);
       }
+    }
+    .search_ {
+      padding: 0; // 由于子集已经设置过padding 说一将这里的padding设置为0
+      margin-top: -4px; // 与理想效果偏差 4px
+      padding-right: 5px;
     }
   }
   .cuttle_container {

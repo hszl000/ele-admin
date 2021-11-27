@@ -8,7 +8,8 @@ export default {
   cssVar: (state) => {
     return {
       ...variables,
-      ...generateColors(state.theme.myColor) // 覆盖旧的颜色
+      // 新生成的颜色覆盖旧的颜色
+      ...generateColors(state.theme.myColor)
     }
   },
   // 侧边收缩依赖

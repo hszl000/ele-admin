@@ -18,7 +18,6 @@ const messages = {
     }
   }
 }
-console.log(store)
 // 2.定义语言的类型
 const locale = store.getters.language || 'en'
 

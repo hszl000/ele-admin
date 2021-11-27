@@ -36,7 +36,8 @@ const store = useStore()
 // 格式化路由
 // console.log(generateMenus(filterRouter(router.getRoutes())), '格式化后')
 
-// 因为以后路由要变化，所以
+// 因为以后路由要变化，所以 通过 router.getRoutes() 获取动态的路由
+// router.getRoutes() 有一个弊端，就是子路由重复出现在以及路由里，所以要对其进行加工
 const routes = computed(() => {
   const filterRoutes = filterRouter(router.getRoutes())
   return generateMenus(filterRoutes)

@@ -1,3 +1,4 @@
+import i18n from '@/i18n/index.js'
 /**
  * 1.去除重复的二级路由，保持一二级路由的层级关系
  */
@@ -79,4 +80,44 @@ export const generateMenus = (routes, basePath = '') => {
     }
   })
   return result
+}
+
+/*
+  3.配合 fuse.js 处理路由数据源 满足 fuse.js 的搜索方式
+  @param routes 是filter 过滤去重后的路由
+*/
+export const generateFuse = (routes, titles = []) => {
+  let res = []
+  // 遍历 routes
+  for (const route of routes) {
+    // 生成理想的数据格式
+    const data = {
+      path: route.path,
+      title: [...titles] // 不迭代的话这里是一个空 title,如果迭代 这里就是以后的一级标题的 title
+      // 第一次 title在这里是空的
+    }
+    // 条件 1.具有 meta && meta.title 2.过滤掉动态路由
+    const reg = /.\/:.*/ // 正则 判断当前 path 中是否是动态路由
+    if (route.meta && route.meta.title && !reg.exec(route.path)) {
+      // 把生成好的数据里的 title 添加本条数据的title
+      // 执行国际化
+      const title = i18n.global.t(`msg.route.${route.meta.title}`)
+      data.title = [...data.title, title]
+      // 第一次 ...data.title是空的 经过 放入本条数据后就有了
+      // 把数据放到 res 当中
+      res.push(data)
+    }
+
+    // 如果本条数据有 子路由 让子路由继续走上边的流程
+    if (route.children && route.children.length > 0) {
+      const subRes = generateFuse(route.children, data.title)
+      // 返回后的子路由
+      if (subRes.length > 0) {
+        // 放入和父级平级的 res里
+        res = [...res, ...subRes]
+      }
+    }
+  }
+  // 此时的 res 就是父子同级的理想数据
+  return res
 }

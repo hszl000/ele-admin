@@ -1,4 +1,5 @@
 <template>
+  <!-- $attrs加在谁身上谁就能得到父组件绑定的属性 -->
   <el-dropdown
     v-bind="$attrs"
     class="theme"
@@ -8,7 +9,7 @@
     <!-- 换肤图标 -->
     <div>
       <el-tooltip :content="$t('msg.theme.themeChange')">
-        <svg-icon iconName="change-theme" iconClass="theme-svg"></svg-icon>
+        <svg-icon iconName="change-theme"></svg-icon>
       </el-tooltip>
     </div>
     <!-- 下拉选项 -->
