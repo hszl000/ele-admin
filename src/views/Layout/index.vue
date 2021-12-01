@@ -13,6 +13,8 @@
     <div class="main-container">
       <div class="fixed-header">
         <nav-bar />
+        <!-- 顶部导航栏组件 -->
+        <tag-view />
       </div>
       <app-main />
     </div>
@@ -22,7 +24,7 @@
 import SideBar from './components/Sidebar/index.vue'
 import NavBar from './components/Navbar/index.vue'
 import AppMain from './components/Appmain/index.vue'
-
+import TagView from '@/components/TagView/index.vue'
 import { useStore } from 'vuex'
 const store = useStore()
 </script>

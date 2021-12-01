@@ -17,5 +17,7 @@ export default {
   // 国际化语言切换依赖
   language: (state) => state.app.language,
   // 取色器颜色
-  theme_color: (state) => state.theme.myColor
+  theme_color: (state) => state.theme.myColor,
+  // 顶部导航数据
+  tagViewList: (state) => state.tag.tagViewList
 }
