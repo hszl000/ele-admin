@@ -21,7 +21,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { filterRouter, generateMenus } from '@/utils/router.js'
 // 引入导航组件
 import SidebarItem from './SidebarItem.vue'
-// 引入css
+// 引入 store
 import { useStore } from 'vuex'
 
 const router = useRouter()
@@ -49,6 +49,7 @@ const activePath = computed(() => {
 </script>
 
 <style lang="scss" scoped>
+// 必须添加（否则侧边栏抖动）
 :deep(.el-sub-menu__title) {
   display: block !important;
 }

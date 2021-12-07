@@ -6,6 +6,8 @@ export const USER_INFO = 'user_info'
 export const TIME_STAMP = 'time_stamp'
 // 2小时（计算毫秒）
 export const TIME_OUT = 2 * 68 * 60 * 60 * 1000
+// 侧边栏收缩
+export const SIDEBAROPENED = 'sideBarOpened'
 // 设置国际化变量
 export const LANGUAGE = 'language'
 // 主题色变量
@@ -13,6 +15,14 @@ export const MYCOLOR = 'theme_color'
 // 添加顶部导航的变量
 export const TAG_VIEWS = 'tag_views'
 
+// excel 替换规则
+export const USER_RELATION = {
+  姓名: 'username',
+  联系方式: 'mobile',
+  角色: 'role',
+  开通时间: 'openTime'
+  // 头像: 'avatar'
+}
 // el-color-picker 默认颜色
 export const predefineColors = [
   '#ff4500',

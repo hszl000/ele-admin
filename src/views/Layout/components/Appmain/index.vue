@@ -13,7 +13,7 @@
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-// 检测当前路由是否存在白名单中
+// 检测当前路由是否存在黑名单中
 import { isNoTag } from '@/utils/tag.js'
 // 中英文 title 转换
 import { getTitle as getTitle_, watchLang } from '@/utils/i18n'
@@ -73,7 +73,7 @@ watchLang(() => {
 
 <style lang="scss" scoped>
 .app-main {
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 96px);
   width: 100%;
   position: relative;
   overflow: hidden;

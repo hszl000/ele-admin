@@ -73,7 +73,7 @@
 // 引入vue内置函数
 import { ref, watch } from 'vue'
 // 引入密码验证规则函数
-import { passswordValidate, usernameValidate } from './rules.js'
+import { usernameValidate, passswordValidate } from './rules.js'
 // 引入store对象(vuex)
 import { useStore } from 'vuex'
 // 获取路由
@@ -117,7 +117,7 @@ const router = useRouter()
 const loginFn = () => {
   // 还要验证一次表单的数据是否合法
   loginRef.value.validate((validate) => {
-    // 此处执行两此 -- 因为校验了两次
+    // 此处执行两此 -- 因为校验了两次(账号 or 密码)
     if (!validate) return // 一个没有通过
     // 验证通过执行登录逻辑 -- 调用定义好的actions
     store

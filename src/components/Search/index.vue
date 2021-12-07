@@ -77,7 +77,7 @@ const router = useRouter()
 let list = computed(() => {
   // 1.去重
   const filterRoutes = filterRouter(router.getRoutes())
-  console.log(filterRoutes, '去完重的数据')
+  // console.log(filterRoutes, '去完重的数据')
   // 2.格式化路由 条件 1.具有 meta && meta.title 2.过滤掉动态路由
   return generateFuse(filterRoutes)
 })

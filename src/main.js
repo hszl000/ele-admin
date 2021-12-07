@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+// 导入 i18n 国际化
 import i18n from '@/i18n/index.js' // i18n 执行时机比较早 放在App前面
 import App from './App.vue'
 import router from './router'
@@ -13,12 +14,12 @@ import initSvgIcon from '@/icons/index.js'
 
 // 用户鉴权 (路由守卫)
 import './permission.js'
-
-// 导入 i18n 国际化
-
+// 注册 全局属性
+import initFilters from '@/Filters/index.js'
 const app = createApp(App)
 installElementPlus(app) // 安装使用element函数
 initSvgIcon(app) // svg 函数
+initFilters(app) // 全局属性
 app.use(store).use(router).use(i18n).mount('#app')
 
 // 入口 main.jx --> webpack（导入模块：js模块）   出口 /js/app.js 文件
@@ -152,3 +153,18 @@ app.use(store).use(router).use(i18n).mount('#app')
     1.下载 i18n (由于本项目是3.2版本 所以必须安装 i18n 9以上的版本)
     npm install vue-i18n@next （大于9的版本 "^9.2.0-beta.21"）
 */
+
+/**
+webApi参考网站：
+
+  文件读取:
+    创建读取对象: https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
+    读取完毕回调: https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/onload
+    异步读取：https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsArrayBuffer
+
+  文件拖拽Api：
+      https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API
+
+  拖拽在新位置生成源项的副本 ：
+        https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer/dropEffect
+ */

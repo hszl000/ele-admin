@@ -143,7 +143,12 @@ export default {
     importSuccess: ' 条员工数据导入成功',
     dialogTitle1: '确定要删除用户 ',
     dialogTitle2: ' 吗？',
-    roleDialogTitle: '配置角色'
+    roleDialogTitle: '配置角色',
+    nodateFormate: '时间不合法',
+    noExcelFile: '该文件不是一个excel',
+    noJsFile: '该文件不是一个js',
+    invalidDocument: '必须拖拽一个有效文件',
+    exportSucceed: '下载成功'
   },
   role: {
     buttonTxt: '新增角色',

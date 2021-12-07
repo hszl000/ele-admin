@@ -3,7 +3,7 @@
     :model-value="showSelectVariable"
     :title="$t('msg.theme.themeChange')"
     width="30%"
-    @close="handleClose(true)"
+    @close="handleClose()"
   >
     <!-- 取色器 -->
     <div class="content">

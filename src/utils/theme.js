@@ -29,12 +29,15 @@ export const generateNewStyle = async (primary) => {
 
 // 获取本地的 element 版本
 const getDriginalStyle = async () => {
-  // 获取到element当前的版本
-  const version = require('element-plus/package.json').version
-  // 组装成请求本版本的在线路径
-  const url = `https://unpkg.com/element-plus@${version}/dist/index.css`
-  // 发送请求，得到请求的元样式
-  const { data } = await axios(url)
+  // // 获取到element当前的版本
+  // const version = require('element-plus/package.json').version
+  // // 组装成请求本版本的在线路径
+  // const url = `https://unpkg.com/element-plus@${version}/dist/index.css`
+  // // 发送请求，得到请求的元样式
+  // const { data } = await axios(url)
+
+  // 由于网路原因，请求本地资源
+  const { data } = await axios('/element-plus.css')
   return data
 }
 // 将原文件做标记

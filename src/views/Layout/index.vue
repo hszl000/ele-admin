@@ -42,6 +42,11 @@ const store = useStore()
     float: left;
     overflow: hidden; // 侧边栏超出出现了滚动条
     transition: width 0.28s;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
   }
   .main-container {
     .fixed-header {
