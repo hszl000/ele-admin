@@ -1,3 +1,4 @@
+<!-- 语言切换组件 -->
 <template>
   <el-dropdown trigger="click" @command="selectLang">
     <!-- 图标 -->

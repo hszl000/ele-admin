@@ -16,10 +16,14 @@ import initSvgIcon from '@/icons/index.js'
 import './permission.js'
 // 注册 全局属性
 import initFilters from '@/Filters/index.js'
+// 注册自定义指令
+import initDirectives from '@/directives/index.js'
+
 const app = createApp(App)
 installElementPlus(app) // 安装使用element函数
 initSvgIcon(app) // svg 函数
 initFilters(app) // 全局属性
+initDirectives(app) // 全局指令
 app.use(store).use(router).use(i18n).mount('#app')
 
 // 入口 main.jx --> webpack（导入模块：js模块）   出口 /js/app.js 文件

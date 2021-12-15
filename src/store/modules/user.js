@@ -57,10 +57,15 @@ const actions = {
     })
   },
   // 退出登录
-  logout({ commit }) {
+  logout(context) {
     // 清理用户数据
-    commit('setToken', '')
-    commit('setUserInfo', {})
+    context.commit('setToken', '')
+    context.commit('setUserInfo', {})
+
+    // 退出登录时清除本地数据（角色 or 权限）
+    context.dispatch('roleAndPermission/clearRoleAndPermission', null, {
+      root: true
+    })
     // 跳转到登录页面
     router.push('/login')
   },

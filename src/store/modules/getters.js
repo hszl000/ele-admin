@@ -19,5 +19,6 @@ export default {
   // 取色器颜色
   theme_color: (state) => state.theme.myColor,
   // 顶部导航数据
-  tagViewList: (state) => state.tag.tagViewList
+  tagViewList: (state) => state.tag.tagViewList,
+  roles: (state) => state.roleAndPermission.roles
 }

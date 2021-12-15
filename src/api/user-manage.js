@@ -35,3 +35,28 @@ export const deleteUserById = (id) => {
     method: 'GET'
   })
 }
+
+// 用户详情
+export const userDetailById = (id) => {
+  return axios.request({
+    url: `/user-manage/detail/${id}`,
+    method: 'GET'
+  })
+}
+
+// 获取指定员工角色
+export const getUserRoleById = (id) => {
+  return axios.request({
+    url: `/user-manage/role/${id}`,
+    method: 'GET'
+  })
+}
+
+// 为用户分配角色
+export const upDataUserRole = (id, data) => {
+  return axios.request({
+    url: `/user-manage/update-role/${id}`,
+    method: 'POST',
+    data
+  })
+}

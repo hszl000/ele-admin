@@ -23,7 +23,12 @@ server.interceptors.request.use(
         // 不能请求了
         return Promise.reject(new Error('token过期，请重新登录'))
       }
-      //   // 如果存在token 不存在 不封装
+      // 携带语言的参数
+      if (store.getters.language) {
+        // Accept-Lanuage
+        config.headers['Accept-Language'] = store.getters.language
+      }
+      // 如果存在token 不存在 不封装
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
     // // 在发送请求之前做些什么

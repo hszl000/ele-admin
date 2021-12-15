@@ -1,3 +1,4 @@
+<!-- 封装的全屏切换组件 -->
 <template>
   <div>
     <svg-icon

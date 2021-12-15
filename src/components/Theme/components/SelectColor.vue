@@ -1,4 +1,5 @@
 <template>
+  <!-- 换肤取色 -->
   <el-dialog
     :model-value="showSelectVariable"
     :title="$t('msg.theme.themeChange')"

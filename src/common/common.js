@@ -14,7 +14,12 @@ export const LANGUAGE = 'language'
 export const MYCOLOR = 'theme_color'
 // 添加顶部导航的变量
 export const TAG_VIEWS = 'tag_views'
-
+// 角色变量
+export const ROLE = 'role'
+// 权限变量
+export const PERMISSION = 'permission'
+// 加工后权限变量
+export const PERMISSION_ = 'permission_'
 // excel 替换规则
 export const USER_RELATION = {
   姓名: 'username',

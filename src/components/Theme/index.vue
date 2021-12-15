@@ -1,5 +1,6 @@
+<!-- 封装的换肤功能 -->
+<!-- $attrs加在谁身上谁就能得到父组件绑定的属性 -->
 <template>
-  <!-- $attrs加在谁身上谁就能得到父组件绑定的属性 -->
   <el-dropdown
     v-bind="$attrs"
     class="theme"

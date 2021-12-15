@@ -26,6 +26,7 @@ router.beforeEach(async (to, form, next) => {
         // }, 70000)
         await store.dispatch('user/getUserInfo')
       }
+
       next()
     }
     // 未登录

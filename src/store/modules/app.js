@@ -3,8 +3,8 @@ import { setItem, getItem } from '@/utils/storage.js'
 import { LANGUAGE, SIDEBAROPENED } from '@/common/common.js'
 
 const state = {
-  sideBarOpened: getItem(SIDEBAROPENED) || true,
-  language: getItem(LANGUAGE) || ''
+  sideBarOpened: getItem(SIDEBAROPENED),
+  language: getItem(LANGUAGE) || 'en'
 }
 const mutations = {
   // 侧边导航栏切换

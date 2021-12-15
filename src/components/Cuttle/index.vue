@@ -1,3 +1,4 @@
+<!-- 侧边导航伸缩切换组件 -->
 <template>
   <div class="cuttle_container" @click="toggleSideBar">
     <svg-icon :iconName="getIcon" iconClass="cuttle" />

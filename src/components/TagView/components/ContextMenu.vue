@@ -1,3 +1,4 @@
+<!-- 顶部导航组件的菜单 -->
 <template>
   <ul class="context-menu-container">
     <li @click="refresh">{{ $t('msg.tagsView.refresh') }}</li>

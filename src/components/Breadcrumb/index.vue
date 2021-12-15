@@ -1,3 +1,4 @@
+<!-- 面包屑组件 -->
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
     <transition-group name="list" tag="p">

@@ -132,7 +132,7 @@ export default {
     action: '操作',
     show: '查看',
     showRole: '角色',
-    defaultRole: '员工',
+    defaultRole: '暂无权限',
     remove: '删除',
     removeSuccess: '删除成功',
     title: '导出为 excel',
@@ -161,7 +161,9 @@ export default {
     dialogTitle: '新增角色',
     dialogRole: '角色名称',
     dialogDesc: '角色描述',
-    updateRoleSuccess: '用户角色更新成功'
+    updateRoleSuccess: '用户角色更新成功',
+    toggleTitle1: '全部展开',
+    toggleTitle2: '全部收起'
   },
   permission: {
     name: '权限名称',

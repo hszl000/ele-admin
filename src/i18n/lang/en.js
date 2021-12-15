@@ -133,7 +133,7 @@ export default {
     action: 'Operate',
     show: 'Check',
     showRole: 'Role',
-    defaultRole: 'Staff',
+    defaultRole: 'No permissions',
     remove: 'delete',
     removeSuccess: 'Deleted successfully',
     title: 'Export to excel',
@@ -162,7 +162,9 @@ export default {
     dialogTitle: 'New role',
     dialogRole: 'Role Name',
     dialogDesc: 'Role description',
-    updateRoleSuccess: 'User role updated successfully'
+    updateRoleSuccess: 'User role updated successfully',
+    toggleTitle1: 'show title',
+    toggleTitle2: 'hide title'
   },
   permission: {
     name: 'Authority name',

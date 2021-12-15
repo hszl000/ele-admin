@@ -1,12 +1,16 @@
 <template>
-  <div class="app-main">
-    <!-- 二级路由显示容器 -->
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </div>
+  <el-scrollbar height="100vh">
+    <div class="app-main">
+      <!-- 二级路由显示容器 -->
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
+        </transition>
+      </router-view>
+    </div>
+  </el-scrollbar>
 </template>
 
 <script setup>

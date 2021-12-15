@@ -1,3 +1,4 @@
+<!-- 导出 excel组件 -->
 <template>
   <el-dialog
     :title="$t('msg.excel.title')"
@@ -6,7 +7,7 @@
     width="30%"
   >
     <el-input
-      :model-value="fileName"
+      v-model="name"
       :placeholder="$t('msg.excel.placeholder')"
     ></el-input>
     <slot></slot>
@@ -20,7 +21,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, ref, watch } from 'vue'
 import { exportJsonToExcel } from '@/utils/Export2Excel.js'
 import { ElMessage } from 'element-plus'
 // 父组件传的参数
@@ -46,7 +47,13 @@ const props = defineProps({
     default: '下载成功！'
   }
 })
-
+const name = ref('')
+watch(
+  () => props.fileName,
+  (newValue) => {
+    name.value = newValue
+  }
+)
 // 自定义事件
 const emit = defineEmits(['closeDialog'])
 
@@ -64,7 +71,7 @@ const exportExcel = () => {
   exportJsonToExcel({
     header: props.header,
     data: props.data,
-    filename: props.fileName,
+    filename: name.value,
     merges: true,
     autoWidth: true,
     bookType: 'xlsx'

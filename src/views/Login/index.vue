@@ -1,3 +1,4 @@
+<!-- 登录 -->
 <template>
   <div class="login_box">
     <div class="login-container">
@@ -52,7 +53,7 @@
             $t('msg.login.loginBtn')
           }}</el-button>
           <!-- 重置按钮 -->
-          <el-button type="reset" style="width: 100%" @click="resetForm">{{
+          <el-button style="width: 100%" @click="resetForm">{{
             $t('msg.login.resetBtn')
           }}</el-button>
         </div>

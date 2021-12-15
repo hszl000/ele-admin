@@ -1,3 +1,4 @@
+<!-- 路由模糊搜索组件 -->
 <template>
   <div :class="{ show: isShow }" class="header-search">
     <!-- 图标 -->
@@ -105,11 +106,11 @@ initFuse(list.value) // 传入要检索的数据源 --计算出的 list 是 ref 
 
 // 封装监听 language 的切换动作
 watchLang((lang) => {
-  console.log('重新计算数据源', lang)
+  // console.log('重新计算数据源', lang)
   list = computed(() => {
     // 1.去重
     const filterRoutes = filterRouter(router.getRoutes())
-    console.log(filterRoutes, '去完重的数据')
+    // console.log(filterRoutes, '去完重的数据')
     // 2.格式化路由 条件 1.具有 meta && meta.title 2.过滤掉动态路由
     return generateFuse(filterRoutes)
   })
