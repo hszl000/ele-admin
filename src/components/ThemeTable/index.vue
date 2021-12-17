@@ -1,9 +1,6 @@
 <!-- 封装的 table -->
 <template>
   <div>
-    <el-card v-if="!props.isCard">
-      <slot name="isCard" :headerStyleObj="headerStyleObj" />
-    </el-card>
     <slot :headerStyleObj="headerStyleObj" />
   </div>
 </template>
@@ -28,6 +25,8 @@ const childrenBgColor = ref(store.getters.cssVar['light-5'])
 const hoverBgColor = ref(store.getters.cssVar['light-8'])
 // 小圆点移入背景色
 const badgeColorHover = ref(store.getters.cssVar['light-3'])
+// 文章排名拖拽样式
+const ghost = ref(store.getters.cssVar['light-9'])
 
 // 监听 css 的变化
 watch(
@@ -37,33 +36,30 @@ watch(
     hoverBgColor.value = store.getters.cssVar['light-8']
     headerStyleObj.value.background = store.getters.cssVar['light-2']
     badgeColorHover.value = store.getters.cssVar['light-3']
+    ghost.value = store.getters.cssVar['light-4']
   }
 )
 
 // 公共业务
 // 1. 当语言切换的时候 重新调用表格数据初始化
 const props = defineProps({
-  cds: {
+  cbs: {
     type: Array,
     // 自定义 props 校验规则
-    validator: (cds) => {
-      // cds 必须是一个数组
-      if (Array.isArray(cds)) {
+    validator: (cbs) => {
+      // cbs 必须是一个数组
+      if (Array.isArray(cbs)) {
         // 数组中的每个单元必须是一个函数
-        cds.every((item) => typeof item === 'function')
+        cbs.every((item) => typeof item === 'function')
       } else {
         throw new Error('验证失败，不符合规范')
       }
     }
-  },
-  isCard: {
-    type: Boolean,
-    default: true
   }
 })
 
 //  把语言切换后要执行的方法传递进去 内部帮你执行
-watchLang(...props.cds)
+watchLang(...props.cbs)
 </script>
 
 <style lang="scss" scoped>
@@ -80,5 +76,9 @@ watchLang(...props.cds)
   &:hover {
     background: v-bind(badgeColorHover);
   }
+}
+
+:deep(.ghost) {
+  background: v-bind(ghost);
 }
 </style>

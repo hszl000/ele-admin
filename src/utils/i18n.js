@@ -8,16 +8,16 @@ export const getTitle = (title) => {
 }
 
 // 监听中英文切换 重新执行（切换语言）
-export const watchLang = (...cds) => {
+export const watchLang = (...cbs) => {
   watch(
     () => store.getters.language,
     (newValue) => {
       try {
         // 是否所有数据都是函数
-        cds.forEach((cd) => cd(newValue))
+        cbs.forEach((cb) => cb(newValue))
       } catch (err) {
         setTimeout(() => {
-          ElMessage.error('cds 不符合校验规则')
+          ElMessage.error('cbs 不符合校验规则')
         })
       }
     }

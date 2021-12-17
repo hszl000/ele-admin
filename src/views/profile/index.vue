@@ -1,6 +1,7 @@
 <!-- 个人中心 -->
 <template>
   <div>
+    {{ store.getters.hasUserInfo }}
     <div class="">个人中心</div>
     <p>{{ $t('msg.login.title') }}</p>
     <el-pagination
@@ -24,6 +25,8 @@
 
 <script setup>
 import {} from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
 const currentPage1 = 1
 </script>
 

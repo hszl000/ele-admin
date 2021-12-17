@@ -122,6 +122,8 @@ const readFile = (rawFile) => {
 // 通知父组件解析完毕
 const generateData = (result) => {
   props.onSuccess(result)
+  // 上传完成后一定要将 input 的 value清空一次，否则 change 事件不发生改变不会触发
+  tagUploadInput.value.value = null
 }
 // #endregion
 

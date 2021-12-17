@@ -191,6 +191,7 @@ export default {
     commit: 'commit',
     createSuccess: 'The article was created successfully',
     editorSuccess: 'Article modified successfully',
-    sortSuccess: 'Article ranking modified successfully'
+    sortSuccess: 'Article ranking modified successfully',
+    beUnchanged: 'Meaningless operation'
   }
 }

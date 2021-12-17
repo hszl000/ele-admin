@@ -42,6 +42,7 @@ const uploadExcelSuccess = async ({ headers, bodys }) => {
 const generateExcelData = (arr) => {
   const arr_ = []
   arr.forEach((item) => {
+    console.log(item, '0000000000000000')
     const obj = {}
     Object.keys(USER_RELATION).forEach((key) => {
       if (USER_RELATION[key] === 'role') {

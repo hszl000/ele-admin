@@ -9,37 +9,39 @@
       }}</el-button>
     </el-card>
     <!-- 封装插槽 table   isCard属性是询问你父组件是否有card -->
-    <theme-table :cds="cds" :isCard="false">
-      <template #isCard="{ headerStyleObj }">
-        <el-table
-          :data="permissionData"
-          border
-          style="width: 100%; margin-bottom: 20px"
-          row-key="id"
-          :default-expand-all="isShowChildren"
-          :tree-props="{ children: 'children' }"
-          :header-cell-style="headerStyleObj"
-          ref="table"
-        >
-          <el-table-column
-            prop="permissionName"
-            :label="$t('msg.permission.name')"
-            width="200"
-          ></el-table-column>
+    <el-card>
+      <theme-table :cbs="cbs">
+        <template #default="{ headerStyleObj }">
+          <el-table
+            :data="permissionData"
+            border
+            style="width: 100%; margin-bottom: 20px"
+            row-key="id"
+            :default-expand-all="isShowChildren"
+            :tree-props="{ children: 'children' }"
+            :header-cell-style="headerStyleObj"
+            ref="table"
+          >
+            <el-table-column
+              prop="permissionName"
+              :label="$t('msg.permission.name')"
+              width="200"
+            ></el-table-column>
 
-          <el-table-column
-            prop="permissionMark"
-            :label="$t('msg.permission.mark')"
-            width="200"
-          ></el-table-column>
+            <el-table-column
+              prop="permissionMark"
+              :label="$t('msg.permission.mark')"
+              width="200"
+            ></el-table-column>
 
-          <el-table-column
-            prop="permissionDesc"
-            :label="$t('msg.permission.desc')"
-          ></el-table-column>
-        </el-table>
-      </template>
-    </theme-table>
+            <el-table-column
+              prop="permissionDesc"
+              :label="$t('msg.permission.desc')"
+            ></el-table-column>
+          </el-table>
+        </template>
+      </theme-table>
+    </el-card>
   </div>
 </template>
 
@@ -65,7 +67,7 @@ const initPermission = async () => {
   permissionData.value = await getAllPermissions()
 }
 initPermission()
-const cds = [initPermission]
+const cbs = [initPermission]
 
 // 展开收起二级菜单
 const isShowChildren = ref(false)

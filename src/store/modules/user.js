@@ -10,12 +10,13 @@ import * as utils from '@/utils/storage.js'
 // 引入common.js 它是一变量的形式访问数据
 import { TOKEN, USER_INFO } from '@/common/common.js'
 // 引入路由
-import router from '@/router/index.js'
+import router, { clearPrivateRoutes } from '@/router/index.js'
 // 引入token过期时间函数
 import { setTimeStamp } from '@/utils/auth.js'
 const state = {
   token: utils.getItem(TOKEN) || '',
-  userInfo: utils.getItem(USER_INFO) || {}
+  // userInfo: utils.getItem(USER_INFO) || {}
+  userInfo: {}
 }
 const getters = {}
 const mutations = {
@@ -58,6 +59,8 @@ const actions = {
   },
   // 退出登录
   logout(context) {
+    // 退出清除动态添加的路由规则
+    clearPrivateRoutes()
     // 清理用户数据
     context.commit('setToken', '')
     context.commit('setUserInfo', {})
@@ -70,15 +73,12 @@ const actions = {
     router.push('/login')
   },
   // 请求用户数据
-  getUserInfo({ commit }) {
+  async getUserInfo({ commit }) {
     // 发送axios
-    getUserInfo()
-      .then((res) => {
-        commit('setUserInfo', res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    const res = await getUserInfo()
+    console.log('请求用户数据')
+    commit('setUserInfo', res)
+    return res
   }
 }
 export default {

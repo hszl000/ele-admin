@@ -31,10 +31,10 @@ const store = useStore()
 // console.log(router.getRoutes(), 'getRoutes')
 
 // 过滤去重
-// console.log(filterRouter(router.getRoutes()), '过滤后')
+console.log(filterRouter(router.getRoutes()), '过滤后')
 
 // 格式化路由
-// console.log(generateMenus(filterRouter(router.getRoutes())), '格式化后')
+console.log(generateMenus(filterRouter(router.getRoutes())), '格式化后')
 
 // 因为以后路由要变化，所以 通过 router.getRoutes() 获取动态的路由
 // router.getRoutes() 有一个弊端，就是子路由重复出现在以及路由里，所以要对其进行加工

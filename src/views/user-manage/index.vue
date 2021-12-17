@@ -3,9 +3,12 @@
   <div class="user-manage-container">
     <el-card class="header">
       <!-- 导入 excel 按钮 -->
-      <el-button type="primary" @click="onInportExcel">{{
-        $t('msg.excel.importExcel')
-      }}</el-button>
+      <el-button
+        type="primary"
+        @click="onInportExcel"
+        v-showPermission="'importUser'"
+        >{{ $t('msg.excel.importExcel') }}</el-button
+      >
       <!-- 导出  按钮 -->
       <el-button type="success" @click="onExportExcel">{{
         $t('msg.excel.exportExcel')
@@ -14,7 +17,7 @@
     <!-- table -->
     <el-card class="table-card">
       <!-- table 渲染 -->
-      <theme-table :cds="cds" :isCard="true">
+      <theme-table :cbs="cbs">
         <template #default="{ headerStyleObj }">
           <el-table
             :data="tableData"
@@ -103,13 +106,18 @@
                   @click="showUserDetail(row)"
                   >{{ $t('msg.excel.show') }}</el-button
                 >
-                <el-button size="mini" type="primary" @click="openRole(row)">{{
-                  $t('msg.excel.showRole')
-                }}</el-button>
+                <el-button
+                  size="mini"
+                  type="primary"
+                  @click="openRole(row)"
+                  v-showPermission="'distributeRole'"
+                  >{{ $t('msg.excel.showRole') }}</el-button
+                >
                 <el-button
                   size="mini"
                   type="warning"
                   @click="removeDate(row)"
+                  v-showPermission="'removeUser'"
                   >{{ $t('msg.excel.remove') }}</el-button
                 >
               </template>
@@ -122,7 +130,7 @@
         class="pagination"
         @size-change="sizeChange"
         @current-change="currentChange"
-        :currentpage="page"
+        :current-page="page"
         :page-sizes="[1, 5, 10, 20, 30, 50]"
         :page-size="size"
         layout="total,sizes,prev,pager,next,jumper"
@@ -171,7 +179,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onActivated } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 // 获取用户 -- 获取所有 -- 删除当前员工 -- 更新当前用户的角色
@@ -230,7 +238,8 @@ const getManageUser = async () => {
   total.value = data.total
 }
 getManageUser()
-const cds = [getManageUser]
+
+const cbs = [getManageUser]
 // #endregion
 
 // #region 导出业务
@@ -245,6 +254,7 @@ const onExportExcel = () => {
   fileName.value = `${i18n.t('msg.excel.defaultName')}(${page.value})`
   // 默认选中当前页
   excelType.value = 1
+  getManageUser() // 后来发现的 bug 切换下载页数的数据残留问题
 }
 // 关闭模态框
 const close = () => {
@@ -400,6 +410,9 @@ const addTag = async (row, item) => {
   tagObj.value = { row, item, title: '添加' }
   console.log(tagObj.value, '添加')
 }
+
+// 进入 keep-live 缓存组件是调用 onActivated
+onActivated(getManageUser)
 </script>
 
 <style lang="scss" scoped>

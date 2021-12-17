@@ -190,6 +190,7 @@ export default {
     commit: '提交',
     createSuccess: '文章创建成功',
     editorSuccess: '文章修改成功',
-    sortSuccess: '文章排名修改成功'
+    sortSuccess: '文章排名修改成功',
+    beUnchanged: '排名相同将毫无意义'
   }
 }

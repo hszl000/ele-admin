@@ -11,6 +11,7 @@
         borderColor: isActive(route) ? store.getters.cssVar.menuBg : ''
       }"
       active-class="active"
+      :class="active(route)"
       @contextmenu.prevent.stop="showContextMenu($event, index, route.path)"
     >
       {{ route.title }}
@@ -83,6 +84,13 @@ watch(
     }
   }
 )
+
+// 当前选中的路由添加 class
+const active = (to) => {
+  if (to.path === route.path) {
+    return 'active'
+  }
+}
 </script>
 
 <style lang="scss" scoped>
