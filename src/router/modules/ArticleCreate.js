@@ -8,8 +8,9 @@ export default {
   meta: { title: 'article', icon: 'article' },
   children: [
     {
-      path: '/article/create',
+      path: '/article/create/:id',
       component: () => import('@/views/article-create/index'),
+      props: true,
       meta: {
         title: 'articleCreate',
         icon: 'article-create'

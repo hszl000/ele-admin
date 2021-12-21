@@ -24,10 +24,11 @@
 </template>
 
 <script setup>
-import { defineProps, ref, watch } from 'vue'
+import { defineProps, ref, watch, onActivated } from 'vue'
 // 请求当前文章
 import { getArticleDetails } from '@/api/article.js'
-
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const props = defineProps({
   id: {
     type: String,
@@ -45,9 +46,9 @@ getArticle()
 
 // 编辑文章操作
 const editArticle = () => {
-  console.log('编辑')
+  // 跳转到编辑页面 (创建文章页)
+  router.push('/article/create/' + props.id)
 }
-
 // 检测 id 的变化重新请求
 watch(
   () => props.id,
@@ -55,6 +56,9 @@ watch(
     getArticle()
   }
 )
+
+// 由于keep-alive的缘由 每次进入页面有缓存，导致数据是旧的
+onActivated(getArticle)
 </script>
 
 <style lang="scss" scoped>

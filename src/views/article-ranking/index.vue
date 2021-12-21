@@ -24,7 +24,7 @@
             style="width: 100%"
             ref="tableRef"
           >
-            <!-- 排名 -->
+            <!-- 循环放入表格数据 插槽另算 -->
             <el-table-column
               v-for="(item, index) in tableLabels"
               :key="index"
