@@ -15,7 +15,9 @@
           ></textarea>
         </el-tab-pane>
       </el-tabs>
-      <el-button type="primary" @click="confirm">提交</el-button>
+      <el-button type="primary" @click="confirm" class="confirm"
+        >提交</el-button
+      >
     </el-card>
   </div>
 </template>
@@ -59,7 +61,8 @@ onMounted(() => {
 // 提交按钮
 const confirm = async () => {
   // 两种情况 --- 两个编辑器提交的内容问题
-  const title = input.value || '无标题'
+  const title = input.value
+  console.log(input.value, '000000')
   let content
   if (thisLabel.value === '富文本') {
     content = $text.value.value
@@ -93,6 +96,7 @@ const confirm = async () => {
   // 清空 富文本 输入框的内容
   editor.txt.clear()
   // 清空标题框
+  input.value = ''
 }
 
 watch(
@@ -112,4 +116,9 @@ watch(
 )
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.confirm {
+  margin: 20px 0;
+  float: right;
+}
+</style>
